@@ -1,18 +1,29 @@
 class Player
-	constructor: ->
-		this.x = 0
-		this.y = 0
+    constructor: (@game, position) ->
+        this.x = position.x * Tile.width
+        this.y = position.y * Tile.height
 
-	move: ->
+    tick: ->
+        keys = this.game.input.keys
+        vel = 2
 
-	input: (keys) ->
-		this.jump() if keys.up
+        if keys.right
+            this.x += vel
+        if keys.left
+            this.x -= vel
+        if keys.up
+            this.y -= vel
+        if keys.down
+            this.y += vel
 
-	tick: ->
+        if keys.z
+            this.shoot()
 
-	shoot: ->
+    shoot: ->
+        alert "pew!"
 
-	jump: ->
-		console.log "jumping"
+    jump: ->
+        console.log "jumping"
 
-	draw: ->
+    draw: ->
+        this.game.canvas.drawSprite this.x, this.y

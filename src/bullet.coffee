@@ -1,7 +1,6 @@
 class Bullet
-	constructor: (@direction) ->
+    constructor: (@x, @y, @direction) ->
 
-	tick: ->
+    tick: ->
 
-	draw: ->
-	
+    draw: ->

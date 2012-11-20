@@ -12,6 +12,11 @@ class Input
         this.pressed = {}
         this.keys = {}
 
+        for code, key of keymap
+            this.keys[key] =
+                hold: false
+                pulse: false
+
         handler = _.bind this.handler, this
 
         # assign handler
@@ -41,15 +46,17 @@ class Input
             up = this.up[key]
             dn = this.down[key]
 
+            this.keys[key].pulse = dn
+
             if dn and up # frame pulse
-                this.keys[key] = true
+                this.keys[key].hold = true
                 this.down[key] = false
 
             else if dn and not up # pressed
-                this.keys[key] = true
+                this.keys[key].hold = true
                 this.down[key] = false
 
             else if not dn and up # released
-                this.keys[key] = false
+                this.keys[key].hold = false
                 this.up[key] = false
 

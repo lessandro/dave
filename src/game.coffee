@@ -10,7 +10,7 @@ class Game
         console.log "running"
 
         step = _.bind this.step, this
-        window.setInterval step, 100 # fixed at 10fps
+        window.setInterval step, 1000 / 30 # fixed fps
 
     step: ->
         this.tick()

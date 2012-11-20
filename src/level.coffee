@@ -28,6 +28,11 @@ class Level
         this.player = new Player(this.game, this.map.player)
         this.entities.push this.player
 
+    getTile: (x, y) ->
+        i = Math.floor(x/Tile.width)
+        j = Math.floor(y/Tile.height)
+        return this.map.tiles[j][i]
+
     tick: ->
         for entity in this.entities
             entity.tick()

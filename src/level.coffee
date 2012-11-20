@@ -3,18 +3,19 @@ class Level
         {
             player:
                 x: 2
-                y: 4
+                y: 8
 
             tiles: [
-                "                    "
-                "                    "
-                "                    "
-                "                    "
-                "       L            "
-                " LL   LL            "
-                "GGGGGGGGGGGGG       "
-                "GGGGGGGGGGGGGGWWWWWW"
-                "GGGGGGGGGGGGGGGGGWWW"
+                "BBBBBBBBBBBBBBBBBBBG"
+                "BP               RBG"
+                "B  D   D   *   D  BG"
+                "B  B   B   B   B  BG"
+                "BD   D   D   D   DBG"
+                "BB   B   B   B   BBG"
+                "BD     D          BG"
+                "B   BBBB   BBBBBB BG"
+                "B+         B=     BG"
+                "BBBBBBBBBBBBBBBBBBBG"
             ]
         }
     ]

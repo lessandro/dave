@@ -6,9 +6,9 @@ class Player
 
     tick: ->
         keys = this.game.input.keys
-        vel = 3
+        vel = 3.2
 
-        if keys.up.pulse
+        if keys.up.hold
             if not this.jumping and this.canJump()
                 this.jumping = true
                 this.jumpGoal = this.y - 2 * Tile.height

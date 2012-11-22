@@ -1,5 +1,6 @@
 class Player
     constructor: (@game, position) ->
+        this.direction = 1
         this.x = position.x * Tile.width
         this.y = position.y * Tile.height
         this.jumping = false
@@ -30,10 +31,12 @@ class Player
 
         if keys.right.hold
             this.x += vel
+            this.direction = 1
             this.adjustWalk(1)
 
         if keys.left.hold
             this.x -= vel
+            this.direction = -1
             this.adjustWalk(0)
 
     canJump: ->
@@ -83,10 +86,11 @@ class Player
         tile1 == 'B' or tile2 == 'B'
 
     shoot: ->
-        console.log "pew!"
+        bullet = new Bullet(this.game, this.x, this.y, this.direction)
+        this.game.level.entities.push(bullet)
 
     jump: ->
         console.log "jumping"
 
     draw: ->
-        this.game.canvas.drawSprite this.x, this.y
+        this.game.canvas.drawSprite this.x, this.y, 'player'

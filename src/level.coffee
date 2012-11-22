@@ -34,8 +34,13 @@ class Level
         return this.map.tiles[j][i]
 
     tick: ->
+        dead = []
         for entity in this.entities
             entity.tick()
+            if entity.dead
+                dead.push(entity)
+
+        this.entities = _.difference this.entities, dead
 
     draw: ->
         for line, j in this.map.tiles

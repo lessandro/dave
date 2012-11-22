@@ -21,9 +21,10 @@ class Canvas
         this.ctx.fillStyle = tiles[tile]
         this.ctx.fillRect x, y, Tile.width, Tile.height
 
-    drawSprite: (x, y) ->
+    drawSprite: (x, y, type) ->
+        radius = if type == 'player' then 16 else 4
         this.ctx.fillStyle = "green"
         this.ctx.beginPath()
-        this.ctx.arc x+Tile.width/2, y+Tile.height/2, 16, 0, 2 * Math.PI, false
+        this.ctx.arc x+Tile.width/2, y+Tile.height/2, radius, 0, 2 * Math.PI, false
         this.ctx.closePath()
         this.ctx.fill()

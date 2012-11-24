@@ -12,32 +12,39 @@ class Player
         if keys.up.hold
             if not this.jumping and this.canJump()
                 this.jumping = true
+                this.vely = vel
                 this.jumpGoal = this.y - 2 * Tile.height
 
         if keys.z.pulse
             this.shoot()
 
-        if !this.jumping
-            this.y += vel
+        if !this.jumping and !this.canJump()
+            this.y += this.vely
+            this.vely += 0.4
+            if this.vely >= vel
+                this.vely = vel
             this.adjustFall()
 
         if this.jumping
-            this.y -= vel
+            this.y -= this.vely
+            this.vely -= 0.05
 
             if this.y <= this.jumpGoal
+                this.y = this.jumpGoal
                 this.jumping = false
+                this.vely = 0
 
             this.adjustJump()
 
         if keys.right.hold
             this.x += vel
             this.direction = 1
-            this.adjustWalk(1)
+            this.adjustWalk('right')
 
         if keys.left.hold
             this.x -= vel
             this.direction = -1
-            this.adjustWalk(0)
+            this.adjustWalk('left')
 
     canJump: ->
         this.y++
@@ -45,10 +52,10 @@ class Player
         this.y--
         ret
 
-    adjustWalk: (right) ->
-        if this.clipped (if right then 'right' else 'left')
-            if not right
-                this.x += Tile.width
+    adjustWalk: (direction) ->
+        if this.clipped direction
+            if direction == 'left'
+                this.x += Tile.width - 1
             this.x = Tile.width * Math.floor(this.x/Tile.width)
 
     adjustJump: ->
@@ -56,6 +63,7 @@ class Player
             this.y += Tile.height
             this.y = Tile.height * Math.floor(this.y/Tile.height)
             this.jumping = false
+            this.vely = 0
 
     adjustFall: ->
         if this.clipped 'down'

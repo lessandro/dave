@@ -4,6 +4,7 @@ class Player
         this.x = position.x * Tile.width
         this.y = position.y * Tile.height
         this.jumping = false
+        this.t = 0
 
     tick: ->
         keys = this.game.input.keys
@@ -11,6 +12,7 @@ class Player
 
         if keys.up.hold
             if not this.jumping and this.canJump()
+                this.t = 5
                 this.jumping = true
                 this.vely = vel
                 this.jumpGoal = this.y - 2 * Tile.height
@@ -41,6 +43,7 @@ class Player
             this.direction = 1
             this.adjustWalk('right')
 
+
         if keys.left.hold
             this.x -= vel
             this.direction = -1
@@ -57,6 +60,9 @@ class Player
             if direction == 'left'
                 this.x += Tile.width - 1
             this.x = Tile.width * Math.floor(this.x/Tile.width)
+        else
+            if this.canJump()
+                this.t++
 
     adjustJump: ->
         if this.clipped 'up'
@@ -94,11 +100,15 @@ class Player
         tile1 == 'B' or tile2 == 'B'
 
     shoot: ->
-        bullet = new Bullet(this.game, this.x, this.y, this.direction)
+        x = if this.direction == 1 then this.x + 32 else this.x
+        bullet = new Bullet(this.game, x, this.y+15, this.direction)
         this.game.level.entities.push(bullet)
 
     jump: ->
         console.log "jumping"
 
     draw: ->
-        this.game.canvas.drawSprite this.x, this.y, 'player'
+        sprite = "player"
+        sprite += (Math.floor(this.t / 5)) % 2
+        sprite += (if this.direction == 1 then 'r' else 'l')
+        this.game.canvas.drawSprite this.x, this.y, sprite

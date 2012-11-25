@@ -5,7 +5,7 @@ class Game
         this.input = new Input()
         this.canvas = new Canvas()
         this.restart = true
-        this.currentLevel = 1
+        this.currentLevel = 0
 
     run: ->
         console.log "running"

@@ -29,8 +29,8 @@ class Level
         this.entities.push this.player
 
     getTile: (x, y) ->
-        i = Math.floor(x/Tile.width)
-        j = Math.floor(y/Tile.height)
+        i = Math.floor(x/Tile.size)
+        j = Math.floor(y/Tile.size)
         return this.map.tiles[j][i]
 
     tick: ->

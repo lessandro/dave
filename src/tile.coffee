@@ -1,3 +1,5 @@
 class Tile
-    @width: 32
-    @height: 32
+    @size: 32
+
+    @isSolid: (tile) ->
+        return tile in ['B', '+']

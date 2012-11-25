@@ -1,8 +1,10 @@
-class Player
+class Player extends Entity
     constructor: (@game, position) ->
+        this.width = 32
+        this.height = 32
         this.direction = 1
-        this.x = position.x * Tile.width
-        this.y = position.y * Tile.height
+        this.x = position.x * Tile.size
+        this.y = position.y * Tile.size
         this.jumping = false
         this.t = 0
 
@@ -15,7 +17,7 @@ class Player
                 this.t = 5
                 this.jumping = true
                 this.vely = vel
-                this.jumpGoal = this.y - 2 * Tile.height
+                this.jumpGoal = this.y - 2 * Tile.size
 
         if keys.z.pulse
             this.shoot()
@@ -58,54 +60,27 @@ class Player
     adjustWalk: (direction) ->
         if this.clipped direction
             if direction == 'left'
-                this.x += Tile.width - 1
-            this.x = Tile.width * Math.floor(this.x/Tile.width)
+                this.x += Tile.size - 1
+            this.x = Tile.size * Math.floor(this.x/Tile.size)
         else
             if this.canJump()
                 this.t++
 
     adjustJump: ->
         if this.clipped 'up'
-            this.y += Tile.height
-            this.y = Tile.height * Math.floor(this.y/Tile.height)
+            this.y += Tile.size
+            this.y = Tile.size * Math.floor(this.y/Tile.size)
             this.jumping = false
             this.vely = 0
 
     adjustFall: ->
         if this.clipped 'down'
-            this.y = Tile.height * Math.floor(this.y/Tile.height)
-
-    clipped: (direction) ->
-        # check if the player is clipped in a block
-
-        edge = Tile.height - 1
-        x1 = x2 = this.x
-        y1 = y2 = this.y
-
-        switch direction
-            when 'up'
-                x2 += edge
-            when 'down'
-                x2 += edge
-                y1 = y2 = y1 + edge
-            when 'left'
-                y2 += edge
-            when 'right'
-                x1 = x2 = x1 + edge
-                y2 += edge
-
-        tile1 = this.game.level.getTile x1, y1
-        tile2 = this.game.level.getTile x2, y2
-
-        tile1 == 'B' or tile2 == 'B'
+            this.y = Tile.size * Math.floor(this.y/Tile.size)
 
     shoot: ->
         x = if this.direction == 1 then this.x + 32 else this.x
         bullet = new Bullet(this.game, x, this.y+15, this.direction)
         this.game.level.entities.push(bullet)
-
-    jump: ->
-        console.log "jumping"
 
     draw: ->
         sprite = "player"

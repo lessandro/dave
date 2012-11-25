@@ -34,15 +34,15 @@ class Canvas
         "=": "brown"
 
     drawTile: (tile, i, j) ->
-        x = i * Tile.width
-        y = j * Tile.height
+        x = i * Tile.size
+        y = j * Tile.size
 
         if this.sprites[tile]
             this.drawSprite x, y, tile
             return
 
         this.ctx.fillStyle = tiles[tile]
-        this.ctx.fillRect x, y, Tile.width, Tile.height
+        this.ctx.fillRect x, y, Tile.size, Tile.size
 
     drawSprite: (x, y, sprite) ->
         this.sprites[sprite].draw(this.ctx, x, y)

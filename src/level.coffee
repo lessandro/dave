@@ -20,30 +20,30 @@ class Level
         },
         {
             player:
-                x: 2
+                x: 1
                 y: 8
 
             tiles: [
-                "BBBBBBBBBBBBBBBBBBBG"
-                "BP               RBG"
-                "B  D   D   *   D  BG"
-                "B  B   B   B   B  BG"
-                "BD   D   D   D   DBG"
-                "BB   B   B   B   BBG"
-                "BD     D          BG"
-                "B   BBBB   BBBBBB BG"
-                "B+         B=     BG"
-                "BBBBBBBBBBBBBBBBBBBG"
+                "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      "
+                "BR     D            P         BB               =BB      "
+                "B                       BBBBB BB BBBBBBBBBBBBBBBBB      "
+                "B-  -        -         BB     BB     B                  "
+                "B       ---   B       BB  BBBBBBBBB  B                  "
+                "B --     B   *B ----- B  BB PB    B  B                  "
+                "B        B -  B       B B    B  B B BB                  "
+                "B   --- RB    B DDDDD B B BB B BB    B                  "
+                "B        BD  -B       B   BP   PB  BPB                  "
+                "BBBFFFFFFBFFFFBWWWWWWWBBBBBBBBBBBBBBBBFFFFFFFFFFFFFFFFFF"
             ]
         }
     ]
 
     constructor: (@game, n) ->
-        this.map = Level.maps[n]
+        this.start = Level.maps[n].player
+        this.tiles = _.clone Level.maps[n].tiles
         this.entities = []
-        this.tiles = []
 
-        this.player = new Player(this.game, this.map.player)
+        this.player = new Player(this.game, this.start)
         this.entities.push this.player
 
     getCoords: (x, y) ->
@@ -52,9 +52,9 @@ class Level
         return [i, j]        
 
     inBounds: (i, j) ->
-        if i < 0 or i >= this.map.tiles[0].length
+        if i < 0 or i >= this.tiles[0].length
             return false
-        if j < 0 or j >= this.map.tiles.length
+        if j < 0 or j >= this.tiles.length
             return false
         return true
 
@@ -64,14 +64,14 @@ class Level
         unless this.inBounds i, j
             return ' '
 
-        return this.map.tiles[j][i]
+        return this.tiles[j][i]
 
     clearTile: (x, y) ->
         [i, j] = this.getCoords x, y
 
         if this.inBounds i, j
-            line = this.map.tiles[j]
-            this.map.tiles[j] = line[0..(i-1)] + ' ' + line[(i+1)..]
+            line = this.tiles[j]
+            this.tiles[j] = line[0..(i-1)] + ' ' + line[(i+1)..]
 
     tick: ->
         dead = []
@@ -83,7 +83,11 @@ class Level
         this.entities = _.difference this.entities, dead
 
     draw: ->
-        for line, j in this.map.tiles
+        w = 18 * Tile.size
+        dx = Math.floor(this.player.x / w) * w
+        this.game.canvas.setScroll dx
+
+        for line, j in this.tiles
             for tile, i in line
                 this.drawTile tile, i, j
 

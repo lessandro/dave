@@ -5,6 +5,7 @@ class Player extends Entity
         this.direction = 1
         this.x = position.x * Tile.size
         this.y = position.y * Tile.size
+        this.vely = 0
         this.jumping = false
         this.t = 0
 
@@ -102,6 +103,10 @@ class Player extends Entity
                 if this.hasTrophy
                     this.game.nextLevel = true
                     this.hasTrophy = false
+
+            if Tile.isLethal tile.tile
+                this.dead = true
+                this.game.restart = true
 
             if Tile.isPickable tile.tile
                 this.game.level.clearTile tile.x, tile.y

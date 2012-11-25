@@ -7,15 +7,7 @@ class Input
         90: "z"
 
     constructor: ->
-        this.down = {}
-        this.up = {}
-        this.pressed = {}
-        this.keys = {}
-
-        for code, key of keymap
-            this.keys[key] =
-                hold: false
-                pulse: false
+        this.clear()
 
         handler = _.bind this.handler, this
 
@@ -60,3 +52,13 @@ class Input
                 this.keys[key].hold = false
                 this.up[key] = false
 
+    clear: ->
+        this.down = {}
+        this.up = {}
+        this.pressed = {}
+        this.keys = {}
+
+        for code, key of keymap
+            this.keys[key] =
+                hold: false
+                pulse: false

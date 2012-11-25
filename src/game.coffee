@@ -4,7 +4,8 @@ class Game
 
         this.input = new Input()
         this.canvas = new Canvas()
-        this.level = new Level(this, 0)
+        this.nextLevel = true
+        this.currentLevel = -1
 
     run: ->
         console.log "running"
@@ -17,6 +18,15 @@ class Game
         this.draw()
 
     tick: ->
+        if this.nextLevel
+            this.nextLevel = false
+            this.currentLevel++
+
+            if this.currentLevel >= Level.maps.length
+                this.currentLevel = 0
+
+            this.level = new Level(this, this.currentLevel)
+
         this.input.tick()
         this.level.tick()
         

@@ -51,6 +51,8 @@ class Player extends Entity
             this.direction = -1
             this.adjustWalk('left')
 
+        this.touchTiles()
+
     canJump: ->
         this.y++
         ret = this.clipped 'down'
@@ -78,8 +80,9 @@ class Player extends Entity
             this.y = Tile.size * Math.floor(this.y/Tile.size)
 
     shoot: ->
-        x = if this.direction == 1 then this.x + 32 else this.x
-        bullet = new Bullet(this.game, x, this.y+15, this.direction)
+        x = if this.direction == 1 then this.x + this.width else this.x
+        y = this.y + this.height/2
+        bullet = new Bullet(this.game, x, y, this.direction)
         this.game.level.entities.push(bullet)
 
     draw: ->
@@ -87,3 +90,19 @@ class Player extends Entity
         sprite += (Math.floor(this.t / 5)) % 2
         sprite += (if this.direction == 1 then 'r' else 'l')
         this.game.canvas.drawSprite this.x, this.y, sprite
+
+    touchTiles: ->
+        tiles = _.flatten this.touchingTiles()
+        for tile in tiles
+
+            if tile.tile == '*'
+                this.hasTrophy = true
+
+            if tile.tile == '='
+                if this.hasTrophy
+                    this.game.nextLevel = true
+                    this.hasTrophy = false
+
+            if Tile.isPickable tile.tile
+                this.game.level.clearTile tile.x, tile.y
+

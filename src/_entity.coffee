@@ -5,27 +5,25 @@ class Entity
 
     tick: ->
 
+    touchingTiles: ->
+        level = this.game.level
+        getTile = (x, y) ->
+            tile: level.getTile x, y
+            x: x
+            y: y
+
+        xs = [this.x, this.x + this.width - 1]
+        ys = [this.y, this.y + this.height - 1]
+
+        return (getTile x, y for x in xs for y in ys)
+
     clipped: (direction) ->
-        # check if the entity is clipped in a block
+        tiles = this.touchingTiles()
 
-        edgex = this.width - 1
-        edgey = this.height - 1
-        x1 = x2 = this.x
-        y1 = y2 = this.y
+        map =
+            'up': [tiles[0][0].tile, tiles[0][1].tile]
+            'down': [tiles[1][0].tile, tiles[1][1].tile]
+            'left': [tiles[0][0].tile, tiles[1][0].tile]
+            'right': [tiles[0][1].tile, tiles[1][1].tile]
 
-        switch direction
-            when 'up'
-                x2 += edgex
-            when 'down'
-                x2 += edgex
-                y1 = y2 = y1 + edgey
-            when 'left'
-                y2 += edgey
-            when 'right'
-                x1 = x2 = x1 + edgex
-                y2 += edgey
-
-        tile1 = this.game.level.getTile x1, y1
-        tile2 = this.game.level.getTile x2, y2
-
-        Tile.isSolid(tile1) or Tile.isSolid(tile2)
+        return _.any _.map map[direction], Tile.isSolid

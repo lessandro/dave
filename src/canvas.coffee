@@ -7,10 +7,10 @@ class Canvas
         this.ctx.webkitImageSmoothingEnabled = false;
 
         this.sprites =
-            'player0r': new Sprite(0, 0)
-            'player0l': new Sprite(1, 0)
-            'player1r': new Sprite(2, 0)
-            'player1l': new Sprite(3, 0)
+            'player0r': new Sprite(0, 0, 14, 16)
+            'player0l': new Sprite(1, 0, 14, 16)
+            'player1r': new Sprite(2, 0, 14, 16)
+            'player1l': new Sprite(3, 0, 14, 16)
             'bulletr': new Sprite(0, 1, 7, 3)
             'bulletl': new Sprite(1, 1, 7, 3)
             '*': new Sprite(0, 2)

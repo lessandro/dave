@@ -1,6 +1,6 @@
 class Player extends Entity
     constructor: (@game, position) ->
-        this.width = 32
+        this.width = 28
         this.height = 32
         this.direction = 1
         this.x = position.x * Tile.size
@@ -11,7 +11,7 @@ class Player extends Entity
 
     tick: ->
         keys = this.game.input.keys
-        vel = 3.2
+        vel = 4
 
         if keys.up.hold
             if not this.jumping and this.canJump()
@@ -25,14 +25,14 @@ class Player extends Entity
 
         if !this.jumping and !this.canJump()
             this.y += this.vely
-            this.vely += 0.4
+            this.vely += 0.2
             if this.vely >= vel
                 this.vely = vel
             this.adjustFall()
 
         if this.jumping
             this.y -= this.vely
-            this.vely -= 0.05
+            this.vely -= 0.01
 
             if this.y <= this.jumpGoal
                 this.y = this.jumpGoal
@@ -63,8 +63,11 @@ class Player extends Entity
     adjustWalk: (direction) ->
         if this.clipped direction
             if direction == 'left'
-                this.x += Tile.size - 1
+                this.x += this.width - 1
+
             this.x = Tile.size * Math.floor(this.x/Tile.size)
+            if direction == 'right'
+                this.x += Tile.size - this.width
         else
             if this.canJump()
                 this.t++

@@ -35,6 +35,24 @@ class Level
                 "B        BD  -B       B   BP   PB  BPB                  "
                 "BBBFFFFFFBFFFFBWWWWWWWBBBBBBBBBBBBBBBBFFFFFFFFFFFFFFFFFF"
             ]
+        },
+        {
+            player:
+                x: 2
+                y: 5
+
+            tiles: [
+                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG R   GGGG"
+                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGR    =GG  R  GGG"
+                "GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB         GG   R  R"
+                "GD   D    D   D    D    D      D    D    D      D    D              GGGGGGGGG"
+                "G                                                           G  G    R        "
+                "G+   F   F   FF    F   F   F   FF   F   F  F    FF                  R        "
+                "GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF      FFGG      "
+                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFF    FFGG       "
+                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFR*FFGG        "
+                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFFFFFFFF"
+            ]
         }
     ]
 
@@ -52,9 +70,9 @@ class Level
         return [i, j]        
 
     inBounds: (i, j) ->
-        if i < 0 or i >= this.tiles[0].length
-            return false
         if j < 0 or j >= this.tiles.length
+            return false
+        if i < 0 or i >= this.tiles[j].length
             return false
         return true
 

@@ -24,7 +24,7 @@ class Level
                 y: 8
 
             tiles: [
-                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      '
+                'BBBBBBBBBBBBBBBBBBBBBBBBBBBB  BB  BBBBBBBBBBBBBBBB      '
                 'BR     D            P         BB               =BB      '
                 'B                       BBBBB BB BBBBBBBBBBBBBBBBB      '
                 'B-  -        -         BB     BB     B                  '

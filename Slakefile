@@ -8,14 +8,18 @@ run = (cmd, silent = true) ->
         console.log stdout if stdout
 
 build = ->
-    run 'lsc -bco tmp src/*.ls', false
-    run 'cat src/*.ls | lsc -sbc > dave.js'
+    run 'lsc -bdco tmp src/*.ls', false
+    run 'cat src/*.ls | lsc -sdbc > dave.js'
 
 task \build \build build
 
 task \watch \watch ->
+    build!
+    console.log 'watching'
     watchr.watch {
         path: \src
         listener: (e, file) ->
-            build if /\.ls$/.test file
+            if /\.ls$/.test file
+                console.log file
+                build!
     }

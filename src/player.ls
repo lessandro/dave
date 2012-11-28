@@ -14,73 +14,73 @@ class Player extends Entity
         vel = 4
 
         if keys.up.hold
-            if not @jumping and @canJump!
+            if not @jumping and @can-jump!
                 @t = 5
                 @jumping = true
                 @vely = vel
-                @jumpGoal = @y - 2 * Tile.size
+                @jump-goal = @y - 2 * Tile.size
 
         if keys.z.pulse
             @shoot!
 
-        if !@jumping and !@canJump!
+        if !@jumping and !@can-jump!
             @y += @vely
             @vely += 0.2
             if @vely >= vel
                 @vely = vel
-            @adjustFall!
+            @adjust-fall!
 
         if @jumping
             @y -= @vely
             @vely -= 0.01
 
-            if @y <= @jumpGoal
-                @y = @jumpGoal
+            if @y <= @jump-goal
+                @y = @jump-goal
                 @jumping = false
                 @vely = 0
 
-            @adjustJump!
+            @adjust-jump!
 
         if keys.right.hold
             @x += vel
             @direction = 1
-            @adjustWalk 'right'
+            @adjust-walk \right
 
 
         if keys.left.hold
             @x -= vel
             @direction = -1
-            @adjustWalk 'left'
+            @adjust-walk \left
 
-        @touchTiles!
+        @touch-tiles!
 
-    canJump: ->
+    can-jump: ->
         @y++
-        ret = @clipped 'down'
+        ret = @clipped \down
         @y--
         ret
 
-    adjustWalk: (direction) ->
+    adjust-walk: (direction) ->
         if @clipped direction
-            if direction == 'left'
+            if direction == \left
                 @x += @width - 1
 
             @x = Tile.size * Math.floor @x / Tile.size
-            if direction == 'right'
+            if direction == \right
                 @x += Tile.size - @width
         else
             if @canJump()
                 @t++
 
-    adjustJump: ->
-        if @clipped 'up'
+    adjust-jump: ->
+        if @clipped \up
             @y += Tile.size
             @y = Tile.size * Math.floor @y / Tile.size
             @jumping = false
             @vely = 0
 
-    adjustFall: ->
-        if @clipped 'down'
+    adjust-fall: ->
+        if @clipped \down
             @y = Tile.size * Math.floor @y / Tile.size
 
     shoot: ->
@@ -90,27 +90,25 @@ class Player extends Entity
         @game.level.entities.push bullet
 
     draw: ->
-        sprite = "player"
+        sprite = \player
         sprite += (Math.floor @t / 5) % 2
-        sprite += (if @direction == 1 then 'r' else 'l')
-        @game.canvas.drawSprite @x, @y, sprite
+        sprite += (if @direction == 1 then \r else \l)
+        @game.canvas.draw-sprite @x, @y, sprite
 
-    touchTiles: ->
-        tiles = _.flatten @touchingTiles!
-        for tile in tiles
+    touch-tiles: ->
+        for tile in @touching-tiles!
 
-            if tile.tile == '*'
-                @hasTrophy = true
+            if tile.tile == \*
+                @has-trophy = true
 
-            if tile.tile == '='
-                if @hasTrophy
-                    @game.nextLevel = true
-                    @hasTrophy = false
+            if tile.tile == \=
+                if @has-trophy
+                    @game.next-level = true
+                    @has-trophy = false
 
-            if Tile.isLethal tile.tile
+            if Tile.is-lethal tile.tile
                 @dead = true
                 @game.restart = true
 
-            if Tile.isPickable tile.tile
-                @game.level.clearTile tile.x, tile.y
-
+            if Tile.is-pickable tile.tile
+                @game.level.clear-tile tile.x, tile.y

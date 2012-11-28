@@ -3,28 +3,28 @@ class Game
         @input = new Input()
         @canvas = new Canvas()
         @restart = true
-        @currentLevel = 0
+        @current-level = 0
 
     run: ->
-        console.log "running"
+        console.log \running
 
-        window.setInterval @step, 1000 / 30 # fixed fps
+        window.set-interval @step, 1000 / 30 # fixed fps
 
     step: ~>
         @tick!
         @draw!
 
     tick: ->
-        if @nextLevel
-            @currentLevel++
+        if @next-level
+            @current-level++
 
-            if @currentLevel >= Level.maps.length
-                @currentLevel = 0
+            if @current-level >= Level.maps.length
+                @current-level = 0
 
-        if @restart or @nextLevel        
-            @nextLevel = false
+        if @restart or @next-level        
+            @next-level = false
             @restart = false
-            @level = new Level(this, @currentLevel)
+            @level = new Level(this, @current-level)
             @input.clear!
 
         @input.tick!

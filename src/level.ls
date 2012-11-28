@@ -6,16 +6,16 @@ class Level
                 y: 8
 
             tiles: [
-                "BBBBBBBBBBBBBBBBBBBG"
-                "BP               RBG"
-                "B  D   D   *   D  BG"
-                "B  B   B   B   B  BG"
-                "BD   D   D   D   DBG"
-                "BB   B   B   B   BBG"
-                "BD     D          BG"
-                "B   BBBB   BBBBBB BG"
-                "B+         B=     BG"
-                "BBBBBBBBBBBBBBBBBBBG"
+                'BBBBBBBBBBBBBBBBBBBG'
+                'BP               RBG'
+                'B  D   D   *   D  BG'
+                'B  B   B   B   B  BG'
+                'BD   D   D   D   DBG'
+                'BB   B   B   B   BBG'
+                'BD     D          BG'
+                'B   BBBB   BBBBBB BG'
+                'B+         B=     BG'
+                'BBBBBBBBBBBBBBBBBBBG'
             ]
         },
         {
@@ -24,16 +24,16 @@ class Level
                 y: 8
 
             tiles: [
-                "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      "
-                "BR     D            P         BB               =BB      "
-                "B                       BBBBB BB BBBBBBBBBBBBBBBBB      "
-                "B-  -        -         BB     BB     B                  "
-                "B       ---   B       BB  BBBBBBBBB  B                  "
-                "B --     B   *B ----- B  BB PB    B  B                  "
-                "B        B -  B       B B    B  B B BB                  "
-                "B   --- RB    B DDDDD B B BB B BB    B                  "
-                "B        BD  -B       B   BP   PB  BPB                  "
-                "BBBFFFFFFBFFFFBWWWWWWWBBBBBBBBBBBBBBBBFFFFFFFFFFFFFFFFFF"
+                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      '
+                'BR     D            P         BB               =BB      '
+                'B                       BBBBB BB BBBBBBBBBBBBBBBBB      '
+                'B-  -        -         BB     BB     B                  '
+                'B       ---   B       BB  BBBBBBBBB  B                  '
+                'B --     B   *B ----- B  BB PB    B  B                  '
+                'B        B -  B       B B    B  B B BB                  '
+                'B   --- RB    B DDDDD B B BB B BB    B                  '
+                'B        BD  -B       B   BP   PB  BPB                  '
+                'BBBFFFFFFBFFFFBWWWWWWWBBBBBBBBBBBBBBBBFFFFFFFFFFFFFFFFFF'
             ]
         },
         {
@@ -42,16 +42,16 @@ class Level
                 y: 5
 
             tiles: [
-                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG R   GGGG"
-                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGR    =GG  R  GGG"
-                "GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB         GG   R  R"
-                "GD   D    D   D    D    D      D    D    D      D    D              GGGGGGGGG"
-                "G                                                           G  G    R        "
-                "G+   F   F   FF    F   F   F   FF   F   F  F    FF                  R        "
-                "GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF      FFGG      "
-                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFF    FFGG       "
-                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFR*FFGG        "
-                "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFFFFFFFF"
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG R   GGGG'
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGR    =GG  R  GGG'
+                'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB         GG   R  R'
+                'GD   D    D   D    D    D      D    D    D      D    D              GGGGGGGGG'
+                'G                                                           G  G    R        '
+                'G+   F   F   FF    F   F   F   FF   F   F  F    FF                  R        '
+                'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF      FFGG      '
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFF    FFGG       '
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFR*FFGG        '
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFFFFFFFF'
             ]
         }
     ]
@@ -64,30 +64,30 @@ class Level
         @player = new Player(@game, @start)
         @entities.push @player
 
-    getCoords: (x, y) ->
+    get-coords: (x, y) ->
         i = Math.floor x / Tile.size
         j = Math.floor y / Tile.size
         return [i, j]        
 
-    inBounds: (i, j) ->
+    in-bounds: (i, j) ->
         if j < 0 or j >= @tiles.length
             return false
         if i < 0 or i >= @tiles[j].length
             return false
         return true
 
-    getTile: (x, y) ->
-        [i, j] = @getCoords x, y
+    get-tile: (x, y) ->
+        [i, j] = @get-coords x, y
 
-        unless @inBounds i, j
+        unless @in-bounds i, j
             return ' '
 
         return @tiles[j][i]
 
-    clearTile: (x, y) ->
-        [i, j] = @getCoords x, y
+    clear-tile: (x, y) ->
+        [i, j] = @get-coords x, y
 
-        if @inBounds i, j
+        if @in-bounds i, j
             @tiles[j][i] = ' '
 
     tick: ->
@@ -101,15 +101,15 @@ class Level
 
     draw: ->
         w = 18 * Tile.size
-        dx = Math.floor(@player.x / w) * w
-        @game.canvas.setScroll dx
+        dx = (Math.floor @player.x / w) * w
+        @game.canvas.set-scroll dx
 
         for line, j in @tiles
             for tile, i in line
-                @drawTile tile, i, j
+                @draw-tile tile, i, j
 
         for entity in @entities
             entity.draw()
 
-    drawTile: (tile, i, j) ->
-        @game.canvas.drawTile tile, i, j
+    draw-tile: (tile, i, j) ->
+        @game.canvas.draw-tile tile, i, j

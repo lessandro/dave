@@ -1,10 +1,10 @@
 class Input
     keymap =
-        37: "left"
-        38: "up"
-        39: "right"
-        40: "down"
-        90: "z"
+        37: \left
+        38: \up
+        39: \right
+        40: \down
+        90: \z
 
     ->
         @clear!
@@ -12,21 +12,21 @@ class Input
         handler = _.bind @handler, this
 
         # assign handler
-        $(document.body)
-            .on("keydown", handler)
-            .on("keyup", handler)
+        $ document.body
+            .on \keydown, handler
+            .on \keyup, handler
 
     handler: (e) ->
         key = keymap[e.which]
         return true unless key
 
-        if e.type is "keydown"
+        if e.type is \keydown
             # disable keydown repeat
             unless @pressed[key]
                 @pressed[key] = true
                 @down[key] = true
 
-        if e.type is "keyup"
+        if e.type is \keyup
             @pressed[key] = false
             @up[key] = true
         

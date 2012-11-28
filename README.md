@@ -1,2 +1,1 @@
-2D platformer written in CoffeeScript
-
+2D platformer written in LiveScript

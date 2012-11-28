@@ -9,7 +9,7 @@ class Sprite
 
         unless Sprite.image
             Sprite.image = new Image()
-            Sprite.image.src = 'images.png'
+            Sprite.image.src = \images.png
 
     draw: (ctx, x, y) ->
-        ctx.drawImage Sprite.image, @sx, @sy, @sw, @sh, x, y, @dw, @dh
+        ctx.draw-image Sprite.image, @sx, @sy, @sw, @sh, x, y, @dw, @dh

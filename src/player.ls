@@ -23,11 +23,11 @@ class Player extends Entity
         if keys.z.pulse
             @shoot!
 
-        if !@jumping and !@can-jump!
+        if !@jumping and !@can-jump! # falling!
             @y += @vely
             @vely += 0.2
-            if @vely >= vel
-                @vely = vel
+            @vely >?= vel/3
+            @vely <?= vel
             @adjust-fall!
 
         if @jumping

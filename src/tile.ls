@@ -5,7 +5,7 @@ class Tile
         return tile in <[ B G + - ]>
 
     @is-pickable = (tile) ->
-        return tile in <[ * P D R ]>
+        return tile in <[ * P D R J ]>
 
     @is-lethal = (tile) ->
-        return tile in <[ W F ]>
+        return tile in <[ W ]>

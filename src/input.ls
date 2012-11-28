@@ -4,6 +4,7 @@ class Input
         38: \up
         39: \right
         40: \down
+        88: \x
         90: \z
 
     ->

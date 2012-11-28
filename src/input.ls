@@ -9,14 +9,12 @@ class Input
     ->
         @clear!
 
-        handler = _.bind @handler, this
-
         # assign handler
         $ document.body
-            .on \keydown, handler
-            .on \keyup, handler
+            .on \keydown, @handler
+            .on \keyup, @handler
 
-    handler: (e) ->
+    handler: (e) ~>
         key = keymap[e.which]
         return true unless key
 

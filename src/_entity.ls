@@ -19,10 +19,12 @@ class Entity
     clipped: (direction) ->
         tiles = @touching-tiles!
 
-        map =
-            \up : [tiles[0+0].tile, tiles[0+1].tile]
-            \down : [tiles[2+0].tile, tiles[2+1].tile]
-            \left : [tiles[0+0].tile, tiles[2+0].tile]
-            \right : [tiles[0+1].tile, tiles[2+1].tile]
+        mapping =
+            \up : [0 1]
+            \down : [2 3]
+            \left : [0 2]
+            \right : [1 3]
 
-        return _.any _.map map[direction], Tile.is-solid
+        tiles = [tiles[i].tile for i in mapping[direction]]
+
+        return any Tile.is-solid, tiles

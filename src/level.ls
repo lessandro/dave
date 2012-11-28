@@ -91,13 +91,13 @@ class Level
             @tiles[j][i] = ' '
 
     tick: ->
-        dead = []
+        alive = []
         for entity in @entities
             entity.tick()
-            if entity.dead
-                dead.push(entity)
+            if !entity.dead
+                alive.push(entity)
 
-        @entities = _.difference @entities, dead
+        @entities = alive
 
     draw: ->
         w = 18 * Tile.size

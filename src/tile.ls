@@ -1,11 +1,11 @@
 class Tile
-    @size: 32
+    @size = 32
 
-    @isSolid: (tile) ->
+    @isSolid = (tile) ->
         return tile in ['B', 'G', '+', '-']
 
-    @isPickable: (tile) ->
+    @isPickable = (tile) ->
         return tile in ['*', 'P', 'D', 'R']
 
-    @isLethal: (tile) ->
+    @isLethal = (tile) ->
         return tile in ['W', 'F']

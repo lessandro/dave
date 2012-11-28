@@ -1,5 +1,5 @@
 class Level
-    @maps: [
+    @maps = [
         {
             player:
                 x: 2
@@ -56,61 +56,60 @@ class Level
         }
     ]
 
-    constructor: (@game, n) ->
-        this.start = Level.maps[n].player
-        this.tiles = _.clone Level.maps[n].tiles
-        this.entities = []
+    (@game, n) ->
+        @start = Level.maps[n].player
+        @tiles = [line[to] for line in Level.maps[n].tiles]
+        @entities = []
 
-        this.player = new Player(this.game, this.start)
-        this.entities.push this.player
+        @player = new Player(@game, @start)
+        @entities.push @player
 
     getCoords: (x, y) ->
-        i = Math.floor(x/Tile.size)
-        j = Math.floor(y/Tile.size)
+        i = Math.floor x / Tile.size
+        j = Math.floor y / Tile.size
         return [i, j]        
 
     inBounds: (i, j) ->
-        if j < 0 or j >= this.tiles.length
+        if j < 0 or j >= @tiles.length
             return false
-        if i < 0 or i >= this.tiles[j].length
+        if i < 0 or i >= @tiles[j].length
             return false
         return true
 
     getTile: (x, y) ->
-        [i, j] = this.getCoords x, y
+        [i, j] = @getCoords x, y
 
-        unless this.inBounds i, j
+        unless @inBounds i, j
             return ' '
 
-        return this.tiles[j][i]
+        return @tiles[j][i]
 
     clearTile: (x, y) ->
-        [i, j] = this.getCoords x, y
+        [i, j] = @getCoords x, y
 
-        if this.inBounds i, j
-            line = this.tiles[j]
-            this.tiles[j] = line[0..(i-1)] + ' ' + line[(i+1)..]
+        if @inBounds i, j
+            @tiles[j][i] = ' '
 
     tick: ->
         dead = []
-        for entity in this.entities
+        for entity in @entities
             entity.tick()
             if entity.dead
                 dead.push(entity)
 
-        this.entities = _.difference this.entities, dead
+        @entities = _.difference @entities, dead
 
     draw: ->
         w = 18 * Tile.size
-        dx = Math.floor(this.player.x / w) * w
-        this.game.canvas.setScroll dx
+        dx = Math.floor(@player.x / w) * w
+        @game.canvas.setScroll dx
 
-        for line, j in this.tiles
+        for line, j in @tiles
             for tile, i in line
-                this.drawTile tile, i, j
+                @drawTile tile, i, j
 
-        for entity in this.entities
+        for entity in @entities
             entity.draw()
 
     drawTile: (tile, i, j) ->
-        this.game.canvas.drawTile tile, i, j
+        @game.canvas.drawTile tile, i, j

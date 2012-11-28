@@ -6,10 +6,10 @@ class Input
         40: "down"
         90: "z"
 
-    constructor: ->
-        this.clear()
+    ->
+        @clear!
 
-        handler = _.bind this.handler, this
+        handler = _.bind @handler, this
 
         # assign handler
         $(document.body)
@@ -22,43 +22,43 @@ class Input
 
         if e.type is "keydown"
             # disable keydown repeat
-            unless this.pressed[key]
-                this.pressed[key] = true
-                this.down[key] = true
+            unless @pressed[key]
+                @pressed[key] = true
+                @down[key] = true
 
         if e.type is "keyup"
-            this.pressed[key] = false
-            this.up[key] = true
+            @pressed[key] = false
+            @up[key] = true
         
         # prevent default
         false
 
     tick: ->
         for code, key of keymap
-            up = this.up[key]
-            dn = this.down[key]
+            up = @up[key]
+            dn = @down[key]
 
-            this.keys[key].pulse = dn
+            @keys[key].pulse = dn
 
             if dn and up # frame pulse
-                this.keys[key].hold = true
-                this.down[key] = false
+                @keys[key].hold = true
+                @down[key] = false
 
             else if dn and not up # pressed
-                this.keys[key].hold = true
-                this.down[key] = false
+                @keys[key].hold = true
+                @down[key] = false
 
             else if not dn and up # released
-                this.keys[key].hold = false
-                this.up[key] = false
+                @keys[key].hold = false
+                @up[key] = false
 
     clear: ->
-        this.down = {}
-        this.up = {}
-        this.pressed = {}
-        this.keys = {}
+        @down = {}
+        @up = {}
+        @pressed = {}
+        @keys = {}
 
         for code, key of keymap
-            this.keys[key] =
+            @keys[key] =
                 hold: false
                 pulse: false

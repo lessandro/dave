@@ -1,12 +1,12 @@
 class Canvas
-    constructor: ->
+    ->
         canvas = $("canvas").get(0)
-        this.scroll = 0
-        this.ctx = canvas.getContext("2d")
-        this.ctx.mozImageSmoothingEnabled = false;
-        this.ctx.webkitImageSmoothingEnabled = false;
+        @scroll = 0
+        @ctx = canvas.getContext("2d")
+        @ctx.mozImageSmoothingEnabled = false;
+        @ctx.webkitImageSmoothingEnabled = false;
 
-        this.sprites =
+        @sprites =
             'player0r': new Sprite(0, 0, 14, 16)
             'player0l': new Sprite(1, 0, 14, 16)
             'player1r': new Sprite(2, 0, 14, 16)
@@ -26,18 +26,18 @@ class Canvas
             '-': new Sprite(6, 3)
 
     setScroll: (dx) ->
-        this.scroll = dx
+        @scroll = dx
 
     drawTile: (tile, i, j) ->
         x = i * Tile.size
         y = j * Tile.size
 
-        if this.sprites[tile]
-            this.drawSprite x, y, tile
+        if @sprites[tile]
+            @drawSprite x, y, tile
             return
 
-        this.ctx.fillStyle = 'black'
-        this.ctx.fillRect x-this.scroll, y, Tile.size, Tile.size
+        @ctx.fillStyle = 'black'
+        @ctx.fillRect x - @scroll, y, Tile.size, Tile.size
 
     drawSprite: (x, y, sprite) ->
-        this.sprites[sprite].draw(this.ctx, x-this.scroll, y)
+        @sprites[sprite].draw(@ctx, x - @scroll, y)

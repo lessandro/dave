@@ -8,4 +8,4 @@ class Tile
         return tile in <[ * P D R J ]>
 
     @is-lethal = (tile) ->
-        return tile in <[ W ]>
+        return tile in <[ W F ]>

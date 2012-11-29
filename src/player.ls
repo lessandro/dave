@@ -41,7 +41,7 @@ class Player extends Entity
 
             if @jumping
                 @y -= @vely
-                @vely -= 0.01
+                @vely -= 0.1
 
                 if @y <= @jump-goal
                     @y = @jump-goal

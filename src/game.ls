@@ -33,6 +33,15 @@ class Game
     draw: ->
         @canvas.clear!
         @level.draw!
+        @draw-gui!
+
+    draw-gui: ->
+        line = "Level: #{@current-level + 1} " +
+            "Lives: infinite " +
+            "Jetpack: #{@level.player.has-jetpack} " +
+            "Gun: #{@level.player.has-gun} " +
+            "Trophy: #{@level.player.has-trophy}"
+        @canvas.draw-text 10, 342, line
 
     @main = ->
         game = new Game()

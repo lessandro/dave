@@ -8,6 +8,9 @@ class Player extends Entity
         @vely = 0
         @jumping = false
         @t = 0
+        @has-jetpack = false
+        @has-gun = false
+        @has-trophy = false
 
     tick: ->
         keys = @game.input.keys

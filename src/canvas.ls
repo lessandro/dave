@@ -43,5 +43,10 @@ class Canvas
     draw-sprite: (x, y, sprite) ->
         @sprites[sprite].draw @ctx, x - @scroll, y
 
+    draw-text: (x, y, text) ->
+        @ctx.font = '16pt Arial'
+        @ctx.fill-style = \white
+        @ctx.fill-text text, x, y
+
     clear: ->
         @ctx.clear-rect 0, 0, @canvas.width, @canvas.height

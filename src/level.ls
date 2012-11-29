@@ -60,6 +60,7 @@ class Level
         @start = Level.maps[n].player
         @tiles = [line[to] for line in Level.maps[n].tiles]
         @entities = []
+        @new-entities = []
 
         @player = new Player(@game, @start)
         @entities.push @player
@@ -97,7 +98,8 @@ class Level
             if !entity.dead
                 alive.push(entity)
 
-        @entities = alive
+        @entities = alive +++ @new-entities
+        @new-entities = []
 
     draw: ->
         w = 18 * Tile.size

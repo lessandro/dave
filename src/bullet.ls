@@ -5,6 +5,7 @@ class Bullet extends Entity
         @x = Math.round x - @width / 2
         @y = Math.round y - @height / 2
         @sprite = if @direction == 1 then \bulletr else \bulletl
+        @dead = false
 
     tick: ->
         vel = 10

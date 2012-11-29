@@ -1,5 +1,5 @@
 class Bullet extends Entity
-    (@game, x, y, @direction) ->
+    (@game, @owner, x, y, @direction) ->
         @width = 14
         @height = 6
         @x = Math.round x - @width / 2
@@ -13,6 +13,12 @@ class Bullet extends Entity
 
         if @clipped (if @direction == 1 then \right else \left)
             @dead = true
+
+        if not @on-screen!
+            @dead = true
+
+        if @dead
+            @owner.bullet = null
 
     draw: ->
         @game.canvas.draw-sprite @x, @y, @sprite

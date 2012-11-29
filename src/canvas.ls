@@ -1,5 +1,7 @@
 class Canvas
     ->
+        @width = 640
+        @height = 320
         @canvas = $ \canvas .get 0
         @scroll = 0
         @ctx = @canvas.get-context \2d

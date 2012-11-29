@@ -1,10 +1,4 @@
 class Entity
-    (@game, @x, @y) ->
-
-    draw: ->
-
-    tick: ->
-
     touching-tiles: ->
         get-tile = (x, y) ~>
             tile: @game.level.get-tile x, y
@@ -28,3 +22,13 @@ class Entity
         tiles = [tiles[i].tile for i in mapping[direction]]
 
         return any Tile.is-solid, tiles
+
+    on-screen: ->
+        x = @x - @game.canvas.scroll
+        if x > @game.canvas.width or x + @width < 0
+            return false
+
+        if @y > @game.canvas.height or @y + @height < 0
+            return false
+
+        return true

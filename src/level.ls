@@ -46,12 +46,23 @@ class Level
                 'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGR    =GG  R  GGG'
                 'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB         GG   R  R'
                 'GD   D    D   Z    D    D      D    D    D      D    D              GGGGGGGGG'
-                'G                                                           G  G    R        '
-                'G+   F   F   FF    F   F   F   FF   F   F  F    FF                  R        '
-                'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF      FFGG      '
-                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFF    FFGG       '
-                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFJ*FFGG        '
+                'G                                                           G  G    R       W'
+                'G+   F   F   FF    F   F   F   FF   F   F  F    FF                  R       W'
+                'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF      FFGG     W'
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFF    FFGG      W'
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFJ*FFGG       W'
                 'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFFFFFFFF'
+            ]
+
+            enemies: [
+                {
+                    x: 37
+                    y: 4
+                }
+                {
+                    x: 55
+                    y: 4
+                }
             ]
         }
     ]
@@ -64,6 +75,12 @@ class Level
 
         @player = new Player(@game, @start)
         @entities.push @player
+
+        if Level.maps[n].enemies
+            for enemy in Level.maps[n].enemies
+                x = enemy.x * Tile.size
+                y = enemy.y * Tile.size
+                @entities.push new Enemy(@game, x, y)
 
     get-coords: (x, y) ->
         i = Math.floor x / Tile.size

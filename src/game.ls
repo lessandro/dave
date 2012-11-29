@@ -26,9 +26,12 @@ class Game
             @restart = false
             @level = new Level(this, @current-level)
             @input.clear!
+            @frame = 0
 
         @input.tick!
         @level.tick!
+
+        @frame++
         
     draw: ->
         @canvas.clear!

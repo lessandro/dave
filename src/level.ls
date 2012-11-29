@@ -45,7 +45,7 @@ class Level
                 'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG R   GGGG'
                 'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGR    =GG  R  GGG'
                 'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB         GG   R  R'
-                'GD   D    D   D    D    D      D    D    D      D    D              GGGGGGGGG'
+                'GD   D    D   Z    D    D      D    D    D      D    D              GGGGGGGGG'
                 'G                                                           G  G    R        '
                 'G+   F   F   FF    F   F   F   FF   F   F  F    FF                  R        '
                 'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF      FFGG      '

@@ -62,7 +62,8 @@ class Player extends Entity
             @adjust-walk \left
 
         if keys.z.pulse
-            @shoot!
+            if @has-gun
+                @shoot!
 
         if keys.x.pulse
             if @has-jetpack
@@ -106,7 +107,7 @@ class Player extends Entity
         x = if @direction == 1 then @x + @width else @x
         y = @y + @height / 2
         bullet = new Bullet(@game, x, y, @direction)
-        @game.level.entities.push bullet
+        @game.level.new-entities.push bullet
 
     draw: ->
         sprite = \player
@@ -127,6 +128,9 @@ class Player extends Entity
 
             if tile.tile == \J
                 @has-jetpack = true
+
+            if tile.tile == \Z
+                @has-gun = true
 
             if Tile.is-lethal tile.tile
                 @dead = true

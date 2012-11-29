@@ -25,6 +25,7 @@ class Canvas
             \W : new Sprite(5, 3)
             \- : new Sprite(6, 3)
             \J : new Sprite(3, 1)
+            \Z : new Sprite(2, 1)
 
     set-scroll: (dx) ->
         @scroll = dx

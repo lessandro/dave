@@ -3,7 +3,7 @@ class Game
         @input = new Input()
         @canvas = new Canvas()
         @restart = true
-        @current-level = 0
+        @current-level = 2
 
     run: ->
         console.log \running
@@ -31,6 +31,7 @@ class Game
         @level.tick!
         
     draw: ->
+        @canvas.clear!
         @level.draw!
 
     @main = ->

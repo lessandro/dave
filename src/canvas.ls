@@ -1,8 +1,8 @@
 class Canvas
     ->
-        canvas = $ \canvas .get 0
+        @canvas = $ \canvas .get 0
         @scroll = 0
-        @ctx = canvas.get-context \2d
+        @ctx = @canvas.get-context \2d
         @ctx.moz-image-smoothing-enabled = false;
         @ctx.webkit-image-smoothing-enabled = false;
 
@@ -24,7 +24,7 @@ class Canvas
             \F : new Sprite(4, 3)
             \W : new Sprite(5, 3)
             \- : new Sprite(6, 3)
-            \J : new Sprite(0, 0)
+            \J : new Sprite(3, 1)
 
     set-scroll: (dx) ->
         @scroll = dx
@@ -42,3 +42,6 @@ class Canvas
 
     draw-sprite: (x, y, sprite) ->
         @sprites[sprite].draw @ctx, x - @scroll, y
+
+    clear: ->
+        @ctx.clear-rect 0, 0, @canvas.width, @canvas.height

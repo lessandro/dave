@@ -1,11 +1,8 @@
 class Tile
     @size = 32
 
-    @is-solid = (tile) ->
-        return tile in <[ B G + - ]>
+    @is-solid = (in <[ B G + - ]>)
 
-    @is-pickable = (tile) ->
-        return tile in <[ * P D R J Z ]>
+    @is-pickable = (in <[ * P D R J Z ]>)
 
-    @is-lethal = (tile) ->
-        return tile in <[ W F ]>
+    @is-lethal = (in <[ W F ]>)

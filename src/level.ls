@@ -77,7 +77,7 @@ class Level
         @entities.push @player
 
         if Level.maps[n].enemies
-            for enemy in Level.maps[n].enemies
+            for enemy in that
                 x = enemy.x * Tile.size
                 y = enemy.y * Tile.size
                 @entities.push new Enemy(@game, x, y)
@@ -109,13 +109,8 @@ class Level
             @tiles[j][i] = ' '
 
     tick: ->
-        alive = []
-        for entity in @entities
-            entity.tick()
-            if !entity.dead
-                alive.push(entity)
-
-        @entities = alive +++ @new-entities
+        @entities = filter (-> it.tick!; not it.dead), @entities
+        @entities = @entities +++ @new-entities
         @new-entities = []
 
     draw: ->

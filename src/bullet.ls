@@ -14,7 +14,7 @@ class Bullet extends Entity
         if @clipped (if @direction == 1 then \right else \left)
             @dead = true
 
-        if not @on-screen!
+        unless @on-screen!
             @dead = true
 
         if @dead

@@ -1,12 +1,15 @@
 class Canvas
     ->
-        @width = 640
-        @height = 320
         @canvas = $ \canvas .get 0
-        @scroll = 0
         @ctx = @canvas.get-context \2d
         @ctx.moz-image-smoothing-enabled = false;
         @ctx.webkit-image-smoothing-enabled = false;
+
+        @view =
+            x: 0
+            y: 0
+            width: 640
+            height: 320
 
         @sprites =
             \player0r : new Sprite(0, 0, 14, 16)
@@ -30,7 +33,7 @@ class Canvas
             \Z : new Sprite(2, 1)
 
     set-scroll: (dx) ->
-        @scroll = dx
+        @view.x = dx
 
     draw-tile: (tile, i, j) ->
         x = i * Tile.size
@@ -41,10 +44,10 @@ class Canvas
             return
 
         @ctx.fill-style = \black
-        @ctx.fill-rect x - @scroll, y, Tile.size, Tile.size
+        @ctx.fill-rect x - @view.x, y - @view.y, Tile.size, Tile.size
 
     draw-sprite: (x, y, sprite) ->
-        @sprites[sprite].draw @ctx, x - @scroll, y
+        @sprites[sprite].draw @ctx, x - @view.x, y - @view.y
 
     draw-text: (x, y, text) ->
         @ctx.font = '16pt Arial'

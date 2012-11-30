@@ -9,3 +9,6 @@ class Enemy extends Entity
 
     draw: ->
         @game.canvas.draw-sprite @x, @y, \player0l
+
+    kill: ->
+        @dead = true

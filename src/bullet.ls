@@ -7,18 +7,21 @@ class Bullet extends Entity
         @sprite = if @direction == 1 then \bulletr else \bulletl
         @dead = false
 
-    tick: ->
+    tick: !->
         vel = 10
         @x += @direction * vel
 
-        if @clipped (if @direction == 1 then \right else \left)
+        if @clipped \all or !@on-screen!
             @dead = true
-
-        unless @on-screen!
-            @dead = true
-
-        if @dead
             @owner.bullet = null
+
+        for entity in @game.level.entities
+            if entity in [@, @owner]
+                continue
+
+            if @entity-collision entity
+                if entity.kill!
+                    @dead = true
 
     draw: ->
         @game.canvas.draw-sprite @x, @y, @sprite

@@ -135,8 +135,11 @@ class Player extends Entity
                 @has-gun = true
 
             if Tile.is-lethal tile.tile
-                @dead = true
-                @game.restart = true
+                @kill!
 
             if Tile.is-pickable tile.tile
                 @game.level.clear-tile tile.x, tile.y
+
+    kill: ->
+        @dead = true
+        @game.restart = true

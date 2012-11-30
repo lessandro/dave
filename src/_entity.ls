@@ -1,7 +1,10 @@
 class Entity
+    kill: ->
+        false
+
     corners: ->
-        [[x, y] for y in ys = [@y, @y + @height - 1]
-            for x in xs = [@x, @x + @width - 1]]
+        [[x, y] for y in [@y, @y + @height - 1]
+            for x in [@x, @x + @width - 1]]
 
     touching-tiles: ->
         [{x, y, tile: @game.level.get-tile x, y} for [x, y] in @corners!]
@@ -14,16 +17,20 @@ class Entity
             \down : [2 3]
             \left : [0 2]
             \right : [1 3]
+            \all : [0 1 2 3]
 
         return any Tile.is-solid, [tiles[i].tile for i in mapping[direction]]
 
+    @point-in-rect = ([x, y], rect) ->
+        x >= rect.x and x <= rect.x + rect.width and
+            y >= rect.y and y <= rect.y + rect.height
 
     on-screen: ->
-        x = @x - @game.canvas.scroll
-        if x > @game.canvas.width or x + @width < 0
-            return false
+        @@point-in-rect [@x, @y], @game.canvas.view
 
-        if @y > @game.canvas.height or @y + @height < 0
-            return false
+    point-collision: ~>
+        @@point-in-rect it, @
 
-        return true
+    entity-collision: (entity) ->
+        (any @point-collision, entity.corners!) or
+            (any entity~point-collision, @corners!)

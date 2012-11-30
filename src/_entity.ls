@@ -1,14 +1,10 @@
 class Entity
+    corners: ->
+        [[x, y] for y in ys = [@y, @y + @height - 1]
+            for x in xs = [@x, @x + @width - 1]]
+
     touching-tiles: ->
-        get-tile = (x, y) ~>
-            tile: @game.level.get-tile x, y
-            x: x
-            y: y
-
-        xs = [@x, @x + @width - 1]
-        ys = [@y, @y + @height - 1]
-
-        return [get-tile x, y for y in ys for x in xs]
+        [{x, y, tile: @game.level.get-tile x, y} for [x, y] in @corners!]
 
     clipped: (direction) ->
         tiles = @touching-tiles!
@@ -19,9 +15,8 @@ class Entity
             \left : [0 2]
             \right : [1 3]
 
-        tiles = [tiles[i].tile for i in mapping[direction]]
+        return any Tile.is-solid, [tiles[i].tile for i in mapping[direction]]
 
-        return any Tile.is-solid, tiles
 
     on-screen: ->
         x = @x - @game.canvas.scroll

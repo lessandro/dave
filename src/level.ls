@@ -110,8 +110,7 @@ class Level
 
     tick: ->
         @entities = filter (-> it.tick!; not it.dead), @entities
-        @entities = @entities +++ @new-entities
-        @new-entities = []
+        [@entities, @new-entities] = [@entities +++ @new-entities, []]
 
     draw: ->
         w = 18 * Tile.size

@@ -12,8 +12,7 @@ class Bullet extends Entity
         @x += @direction * vel
 
         if @clipped \all or !@on-screen!
-            @dead = true
-            @owner.bullet = null
+            @die!
 
         for entity in @game.level.entities
             if entity in [@, @owner]
@@ -21,7 +20,11 @@ class Bullet extends Entity
 
             if @entity-collision entity
                 if entity.kill!
-                    @dead = true
+                    @die!
+
+    die: ->
+        @dead = true
+        @owner.bullet = null
 
     draw: ->
         @game.canvas.draw-sprite @x, @y, @sprite

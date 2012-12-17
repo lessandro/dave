@@ -155,7 +155,7 @@ class Level
         [@entities, @new-entities] = [@entities +++ @new-entities, []]
 
     draw: ->
-        w = 16 * Tile.size
+        w = 18 * Tile.size
         dx = (Math.floor @player.x / w) * w
         @game.canvas.set-scroll dx
 

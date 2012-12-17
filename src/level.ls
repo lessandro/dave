@@ -71,19 +71,27 @@ class Level
                 y: 5
 
             tiles: [
-                'GUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
-                'GU      TU    D       D    D   D            D  D UR      D   D  D            DU D D  D  D  D  D D DRU'
-                'GU  UUUUUU            U              UUU UUUUUUU U  WUUUUUUU        DWUUW U  DU UUUUUUUUUUUUU      =U'
-                'GUU   U    UUU UUUU      U   UUUUU            DU    UU   D     UUU UUU  UDU  DU D                UUUU'
-                'GU+U     UUU        U        D       U  UD             UUUUUW   U      JUDU  DUUUUUD U UF     U     U'
-                'GU UFFUUUU             U  UU         U  UUUUU    UUUUU UR DUWU    U   UUUDU       UU U DUFFFR  FFU  U'
-                'GU  UUU      U    U  U    UU    UUU  U           U     UW  DWU    UU UU   U  UUUFRU  U  DUUUU  UUUU U'
-                'GU         UUUU   U      UUUU        U  UUUUU U  U UUUUUU UUUU  U              UUUU UU          DU  U'
-                'GU        UUUUUU  U     UUUUUU       U                          U      U  U                        UU'
-                'GUUUUUUUUUUUUUUUUUUUUUUUUUUUUUFFFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
+                'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
+                'U      TU    D       D    D   D            D  D UR      D   D  D            DU D D  D  D  D  D D DRU'
+                'U  UUUUUU            U              UUU UUUUUUU U  WUUUUUUU        DWUUW U  DU UUUUUUUUUUUUU      =U'
+                'UU   U    UUU UUUU      U   UUUUU            DU    UU   D     UUU UUU  UDU  DU D                UUUU'
+                'U+U     UUU        U        D       U  UD             UUUUUW   U      JUDU  DUUUUUD U UF     U     U'
+                'U UFFUUUU             U  UU         U  UUUUU    UUUUU UR DUWU    U   UUUDU       UU U DUFFFR  FFU  U'
+                'U  UUU      U    U  U    UU    UUU  U           U     UW  DWU    UU UU   U  UUUFRU  U  DUUUU  UUUU U'
+                'U         UUUU   U      UUUU        U  UUUUU U  U UUUUUU UUUU  U              UUUU UU          DU  U'
+                'U        UUUUUU  U     UUUUUU       U                          U      U  U                        UU'
+                'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUFFFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
             ]
 
             enemies: [
+                {
+                    x: 36
+                    y: 4
+                }
+                {
+                    x: 29
+                    y: 2
+                }
             ]
         },
         {
@@ -105,6 +113,18 @@ class Level
             ]
 
             enemies: [
+                {
+                    x: 19
+                    y: 5
+                }
+                {
+                    x: 87
+                    y: 8
+                }
+                {
+                    x: 98
+                    y: 5
+                }
             ]
         }
     ]

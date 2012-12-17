@@ -1,14 +1,16 @@
 class Enemy extends Entity
     (@game, @x, @y, @width = 32, @height = 32) ->
         @dead = false
+        @direction = 1
 
     tick: ->
-        if @game.frame % 100 == 99
-            @bullet = new Bullet(@game, @, @x, @y + @height/2, -1)
-            @game.level.new-entities.push @bullet
+        @direction = if @game.level.player.x < @x then -1 else 1
+        @shoot 6
 
     draw: ->
-        @game.canvas.draw-sprite @x, @y, \player0l
+        sprite = \player0
+        sprite += (if @direction == 1 then \r else \l)
+        @game.canvas.draw-sprite @x, @y, sprite
 
     kill: ->
         @dead = true

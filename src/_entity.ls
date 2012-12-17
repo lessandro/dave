@@ -34,3 +34,11 @@ class Entity
     entity-collision: (entity) ->
         (any @point-collision, entity.corners!) or
             (any entity~point-collision, @corners!)
+
+    shoot: (vel) ->
+        if @bullet
+            return
+        x = if @direction == 1 then @x + @width else @x
+        y = @y + @height / 2
+        @bullet = new Bullet(@game, this, x, y, @direction, vel)
+        @game.level.new-entities.push @bullet

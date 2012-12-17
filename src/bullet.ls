@@ -1,15 +1,16 @@
 class Bullet extends Entity
-    (@game, @owner, x, y, @direction) ->
+    (@game, @owner, x, y, @direction, @vel) ->
         @width = 14
         @height = 6
         @x = Math.round x - @width / 2
         @y = Math.round y - @height / 2
         @sprite = if @direction == 1 then \bulletr else \bulletl
+        if @direction == -1
+            @x -= @width
         @dead = false
 
     tick: !->
-        vel = 10
-        @x += @direction * vel
+        @x += @direction * @vel
 
         if @clipped \all or !@on-screen!
             @die!

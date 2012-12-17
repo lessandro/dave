@@ -63,7 +63,7 @@ class Player extends Entity
 
         if keys.z.pulse
             if @has-gun
-                @shoot!
+                @shoot 8
 
         if keys.x.pulse
             if @has-jetpack
@@ -102,14 +102,6 @@ class Player extends Entity
     adjust-fall: ->
         if @clipped \down
             @y = Tile.size * Math.floor @y / Tile.size
-
-    shoot: ->
-        if @bullet
-            return
-        x = if @direction == 1 then @x + @width else @x
-        y = @y + @height / 2
-        @bullet = new Bullet(@game, this, x, y, @direction)
-        @game.level.new-entities.push @bullet
 
     draw: ->
         sprite = \player

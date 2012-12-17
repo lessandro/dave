@@ -120,7 +120,7 @@ class Player extends Entity
     touch-tiles: ->
         for tile in @touching-tiles!
 
-            if tile.tile == \*
+            if tile.tile == \T
                 @has-trophy = true
 
             if tile.tile == \=

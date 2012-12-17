@@ -3,7 +3,7 @@ class Game
         @input = new Input()
         @canvas = new Canvas()
         @restart = true
-        @current-level = 3
+        @current-level = 0
 
     run: ->
         console.log \running

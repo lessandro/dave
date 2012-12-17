@@ -18,7 +18,7 @@ class Canvas
             \player1l : new Sprite(3, 0, 14, 16)
             \bulletr : new Sprite(0, 1, 7, 3)
             \bulletl : new Sprite(1, 1, 7, 3)
-            \* : new Sprite(0, 2)
+            \T : new Sprite(0, 2)
             \P : new Sprite(1, 2)
             \R : new Sprite(2, 2)
             \D : new Sprite(3, 2)
@@ -30,6 +30,9 @@ class Canvas
             \W : new Sprite(5, 3)
             \- : new Sprite(6, 3)
             \U : new Sprite(0, 4)
+            \| : new Sprite(1, 4)
+            \% : new Sprite(2, 4)
+            \* : new Sprite(3, 4)
             \J : new Sprite(3, 1)
             \Z : new Sprite(2, 1)
 

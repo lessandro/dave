@@ -8,7 +8,7 @@ class Level
             tiles: [
                 'BBBBBBBBBBBBBBBBBBBG'
                 'BP               RBG'
-                'B  D   D   *   D  BG'
+                'B  D   D   T   D  BG'
                 'B  B   B   B   B  BG'
                 'BD   D   D   D   DBG'
                 'BB   B   B   B   BBG'
@@ -29,7 +29,7 @@ class Level
                 'B                       BBBBB BB BBBBBBBBBBBBBBBBB      '
                 'B-  -        -         BB     BB     B                  '
                 'B       ---   B       BB  BBBBBBBBB  B                  '
-                'B --     B   *B ----- B  BB PB    B  B                  '
+                'B --     B   TB ----- B  BB PB    B  B                  '
                 'B        B -  B       B B    B  B B BB                  '
                 'B   --- RB    B DDDDD B B BB B BB    B                  '
                 'B        BD  -B       B   BP   PB  BPB                  '
@@ -50,7 +50,7 @@ class Level
                 'G+   F   F   FF    F   F   F   FF   F   F  F    FF                  R       W'
                 'GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF      FFGG     W'
                 'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFF    FFGG      W'
-                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFJ*FFGG       W'
+                'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFJTFFGG       W'
                 'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGFFFFFFFFF'
             ]
 
@@ -72,7 +72,7 @@ class Level
 
             tiles: [
                 'GUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
-                'GU      *U    D       D    D   D            D  D UR      D   D  D            DU D D  D  D  D  D D DRU'
+                'GU      TU    D       D    D   D            D  D UR      D   D  D            DU D D  D  D  D  D D DRU'
                 'GU  UUUUUU            U              UUU UUUUUUU U  WUUUUUUU        DWUUW U  DU UUUUUUUUUUUUU      =U'
                 'GUU   U    UUU UUUU      U   UUUUU            DU    UU   D     UUU UUU  UDU  DU D                UUUU'
                 'GU+U     UUU        U        D       U  UD             UUUUUW   U      JUDU  DUUUUUD U UF     U     U'
@@ -81,6 +81,27 @@ class Level
                 'GU         UUUU   U      UUUU        U  UUUUU U  U UUUUUU UUUU  U              UUUU UU          DU  U'
                 'GU        UUUUUU  U     UUUUUU       U                          U      U  U                        UU'
                 'GUUUUUUUUUUUUUUUUUUUUUUUUUUUUUFFFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
+            ]
+
+            enemies: [
+            ]
+        },
+        {
+            player:
+                x: 2
+                y: 8
+
+            tiles: [
+                'G *%%%  *   *      *   *  *   *  *  *   *%%%%% *   * *    GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG GGGG'
+                'G %%%%%   *   *  *      *   * *        * %%%%%  * *       GGGGG    D  D  D   P|P   P|P     R    RGGG'
+                'G %%%%% *    *  *    *                   %%%%% T      R  RGGG                   %%%    G   G      GG'
+                'G %%%%%                                  %%%%%        G  GGG      G             %%%              = G'
+                'G* P|P                       P       J    P|P                    GG     GGGG    %%%      G    R    G'
+                'G   |                     G  G   P     G   |           G       G GG  D FGGGG     |                 G'
+                'G   |     GGG  Z                 G  G    G |                     GGD G  GGGGD    |     G   G       G'
+                'G   |     GGG       GGGGG     G           GGG        G      G    GG       F      |   G   G   G     G'
+                'G+  |    GGGGG      GGGGG                 GGG            G      RGGWWWGGF   F    |               GGG'
+                'GGGGGGGGGGGGGGGGGGGGGGGGGWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGFFFFFFFFFFGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG'
             ]
 
             enemies: [

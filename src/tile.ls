@@ -3,6 +3,6 @@ class Tile
 
     @is-solid = (in <[ B U G + - ]>)
 
-    @is-pickable = (in <[ * P D R J Z ]>)
+    @is-pickable = (in <[ T P D R J Z ]>)
 
     @is-lethal = (in <[ W F ]>)

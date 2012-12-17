@@ -19,9 +19,9 @@ class Game
             @current-level++
 
             if @current-level >= Level.maps.length
-                @current-level = 0
+                window.location = 'http://www.whosawesome.com'
 
-        if @restart or @next-level        
+        if @restart or @next-level
             @next-level = false
             @restart = false
             @level = new Level(this, @current-level)

@@ -33,7 +33,7 @@ class Level
                 'B        B -  B       B B    B  B B BB                  '
                 'B   --- RB    B DDDDD B B BB B BB    B                  '
                 'B        BD  -B       B   BP   PB  BPB                  '
-                'BBBFFFFFFBFFFFBWWWWWWWBBBBBBBBBBBBBBBBFFFFFFFFFFFFFFFFFF'
+                'BBBFFFFFFBFFFFBWWWWWWWBBBBBBBBBBBBBBBBFFFFFFFFFFFFFFFFFF        G'
             ]
         },
         {
@@ -63,6 +63,27 @@ class Level
                     x: 55
                     y: 4
                 }
+            ]
+        },
+        {
+            player:
+                x: 2
+                y: 5
+
+            tiles: [
+                'GUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
+                'GU      *U    D       D    D   D            D  D UR      D   D  D            DU D D  D  D  D  D D DRU'
+                'GU  UUUUUU            U              UUU UUUUUUU U  WUUUUUUU        DWUUW U  DU UUUUUUUUUUUUU      =U'
+                'GUU   U    UUU UUUU      U   UUUUU            DU    UU   D     UUU UUU  UDU  DU D                UUUU'
+                'GU+U     UUU        U        D       U  UD             UUUUUW   U      JUDU  DUUUUUD U UF     U     U'
+                'GU UFFUUUU             U  UU         U  UUUUU    UUUUU UR DUWU    U   UUUDU       UU U DUFFFR  FFU  U'
+                'GU  UUU      U    U  U    UU    UUU  U           U     UW  DWU    UU UU   U  UUUFRU  U  DUUUU  UUUU U'
+                'GU         UUUU   U      UUUU        U  UUUUU U  U UUUUUU UUUU  U              UUUU UU          DU  U'
+                'GU        UUUUUU  U     UUUUUU       U                          U      U  U                        UU'
+                'GUUUUUUUUUUUUUUUUUUUUUUUUUUUUUFFFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU'
+            ]
+
+            enemies: [
             ]
         }
     ]
@@ -113,7 +134,7 @@ class Level
         [@entities, @new-entities] = [@entities +++ @new-entities, []]
 
     draw: ->
-        w = 18 * Tile.size
+        w = 16 * Tile.size
         dx = (Math.floor @player.x / w) * w
         @game.canvas.set-scroll dx
 

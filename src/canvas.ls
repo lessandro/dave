@@ -29,6 +29,7 @@ class Canvas
             \F : new Sprite(4, 3)
             \W : new Sprite(5, 3)
             \- : new Sprite(6, 3)
+            \U : new Sprite(0, 4)
             \J : new Sprite(3, 1)
             \Z : new Sprite(2, 1)
 

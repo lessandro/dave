@@ -55,19 +55,15 @@ class Level
             ]
 
             enemies: [
-                {
-                    x: 37
-                    y: 4
-                }
-                {
-                    x: 55
-                    y: 4
-                }
+                *   sprite: 'player1'
+                    waypoints: [[37 4] [38 5] [38 3]]
+                *   sprite: 'player1'
+                    waypoints: [[55 4] [56 5] [56 3]]
             ]
         },
         {
             player:
-                x: 2
+                x: 1
                 y: 5
 
             tiles: [
@@ -84,14 +80,8 @@ class Level
             ]
 
             enemies: [
-                {
-                    x: 36
-                    y: 4
-                }
-                {
-                    x: 29
-                    y: 2
-                }
+                *   sprite: 'player1'
+                    waypoints: [[35 4] [35 3] [34 2] [32 2] [30 2] [28 2] [27 3] [28 4] [29 6] [31 7] [33 7] [35 7] [35 6]]
             ]
         },
         {
@@ -101,30 +91,24 @@ class Level
 
             tiles: [
                 'G *%%%  *   *      *   *  *   *  *  *   *%%%%% *   * *    GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG GGGG'
-                'G %%%%%   *   *  *      *   * *        * %%%%%  * *       GGGGG    D  D  D   P|P   P|P     R    RGGG'
-                'G %%%%% *    *  *    *                   %%%%% T      R  RGGG                   %%%    G   G      GG'
-                'G %%%%%                                  %%%%%        G  GGG      G             %%%              = G'
-                'G* P|P                       P       J    P|P                    GG     GGGG    %%%      G    R    G'
+                'G %%%%%   *   *  *      *   * *        * %%%%%  * *   R   GGGGG    D  D  D   P|P   P|P     R    RGGG'
+                'G %%%%% *    *  *    *                   %%%%% T      G  RGGG                   %%%    G   G     ZGG'
+                'G %%%%%                                  %%%%%           GGG      G             %%%              =JG'
+                'G* P|P                       P            P|P                    GG     GGGG    %%%      G    R    G'
                 'G   |                     G  G   P     G   |           G       G GG  D FGGGG     |                 G'
-                'G   |     GGG  Z                 G  G    G |                     GGD G  GGGGD    |     G   G       G'
+                'G   |     GGG                    G  G    G |                     GGD G  GGGGD    |     G   G       G'
                 'G   |     GGG       GGGGG     G           GGG        G      G    GG       F      |   G   G   G     G'
                 'G+  |    GGGGG      GGGGG                 GGG            G      RGGWWWGGF   F    |               GGG'
                 'GGGGGGGGGGGGGGGGGGGGGGGGGWWWWWWWWWWWWWWWWWGGGGGGGGGGGGGFFFFFFFFFFGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG'
             ]
 
             enemies: [
-                {
-                    x: 19
-                    y: 5
-                }
-                {
-                    x: 87
-                    y: 8
-                }
-                {
-                    x: 98
-                    y: 5
-                }
+                *   sprite: 'player1'
+                    waypoints: [[19 5] [17 4] [15 5] [16 7] [18 8] [19 7]]
+                *   sprite: 'player0'
+                    waypoints: [[87 8]]
+                *   sprite: 'player0'
+                    waypoints: [[98 4]]
             ]
         }
     ]
@@ -140,9 +124,7 @@ class Level
 
         if Level.maps[n].enemies
             for enemy in that
-                x = enemy.x * Tile.size
-                y = enemy.y * Tile.size
-                @entities.push new Enemy(@game, x, y)
+                @entities.push new Enemy(@game, enemy)
 
     get-coords: (x, y) ->
         i = Math.floor x / Tile.size
